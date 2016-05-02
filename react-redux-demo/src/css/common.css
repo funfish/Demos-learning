@@ -1,0 +1,71 @@
+h1, input, ul, li, .checkbox, .delete {
+	margin: 0;
+	padding: 0;	
+}
+
+#root {
+	margin: 10px auto;
+	max-width: 500px;
+	font-size: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.heads {
+	display: block;
+}
+.heads h1 {
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	color: blue;
+	font-size: 6em;
+	font-weight: bold;
+}
+.newInput, li{
+	margin: 0 auto;
+	padding: 5px 30px;
+	width: 100%;
+	height: 2em;
+	line-height: 2em;
+	font-size: 1.5em;
+	box-sizing: border-box;
+}
+.newInput {
+	box-shadow: inset 0 -3px rgba(0, 0, 0, 0.2);	
+	border: none;
+	outline: none;
+}
+ul {
+	padding-bottom: 2em; 
+}
+ul, li {
+	list-style: none;
+	position: relative;
+}
+.completed {
+	text-decoration: line-through;
+	font-style: italic;
+	color: rgba(0, 0, 0, 0.3);
+}
+.checkbox, .delete {
+	position: absolute;
+	border:none;
+	outline:none;
+	color: rgba(0, 0, 0, 0.2);
+}
+.checkbox {
+	left: 0.3em;
+	top: 1em;	
+	width: 5%;
+	height: 60%;
+}
+.delete {
+	right: 5%;
+	background: none;
+	font-size: 40px;
+	width: 7%;
+	height: 80%;
+	cursor: pointer;
+}
+.delete:after {
+	content: '×';
+}

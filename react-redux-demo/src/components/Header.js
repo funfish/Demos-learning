@@ -5,17 +5,19 @@ class Header extends Component {
     if (e.keyCode === 13) {
       let text = e.target.value;
       if (text.length !== 0) {
-        this.props.addTodo(text);
-        e.target.value = '';
+        if (text.match(/\w+/g)[0] !== '') {
+          this.props.addTodo(text);
+          e.target.value = '';
+        }
       }
     }
   }
 
   render() {
     return (
-      <header className="header">
-          <h1>todos</h1>
-          <input
+      <header className="heads">
+          <h1>Todos</h1>
+          <input className="newInput"
               onKeyUp={this.handleKeyUp.bind(this)}
               placeholder="What needs to be done?" />
       </header>

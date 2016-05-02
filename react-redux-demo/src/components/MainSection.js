@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component } from 'react'
+import classnames from 'classnames'
 
 class MainSection extends Component {
   render () {
@@ -6,10 +7,14 @@ class MainSection extends Component {
     return (
       <ul>
         {todos.map(todo =>
-          <li>
+          <li className={classnames({
+          completed: todo.completed
+        })}>
+            <input type="checkbox" className="checkbox" onChange={() => actions.completeItem(todo.id)} />
             <lable>
               {todo.text}
             </lable>
+            <button className="delete" onClick={() => actions.deleteItem(todo.id)}/>
           </li>
         )}
       </ul>
