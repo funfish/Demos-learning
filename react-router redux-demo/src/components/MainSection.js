@@ -1,21 +1,37 @@
 import React, { Component, PropTypes } from 'react'
-//import { connect } from 'react-redux'
-//import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
-import Aside from '../components/Aside'
+import { connect } from 'react-redux'
+import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
+import Posts from './Posts'
 
-export default class App extends Component {
+export default class MainSection extends Component {
+  constructor(props) {
+    super(props)
+  }
+  componentDidMount() {
+    const { dispatch, selectedSubreddit } = this.props
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  }
+
   render() {
     const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
     return (
-      <div>
-        <Aside />
-        {this.props.children}
+      <div className="mainSection">
+        {isFetching && posts.length === 0 &&
+          <h2>Loading...</h2>
+        }
+        {!isFetching && posts.length === 0 &&
+          <h2>Empty.</h2>
+        }
+        {posts.length > 0 &&
+          <div >
+            <Posts posts={posts} />
+          </div>
+        }
       </div>
     )
   }
 }
-/*
-App.propTypes = {
+MainSection.propTypes = {
   selectedSubreddit: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -45,5 +61,4 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps
-)(App)
-*/
+)(MainSection)

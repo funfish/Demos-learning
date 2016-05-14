@@ -26,11 +26,11 @@ function requestPosts(subreddit) {
   }
 }
 
-function receivePosts(subreddit, json) {
+function receivePosts(subreddit, data) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
-    posts: json.data,
+    posts: data,
     receivedAt: Date.now()
   }
 }
@@ -40,7 +40,17 @@ function fetchPosts(subreddit) {
     dispatch(requestPosts(subreddit))
     return fetch(`https://cnodejs.org/api/v1/topics`)
       .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
+      .then(json => {
+        let data = json.data;
+        if (subreddit === 'good') {
+          console.log('goodest')
+          data = data.filter(item => item.good === true)
+        } else {
+          console.log(subreddit,111);
+          data = data.filter(item => item.tab === subreddit)          
+        }
+        dispatch(receivePosts(subreddit, data))
+      })
   }
 }
 
