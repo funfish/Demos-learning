@@ -5,7 +5,7 @@ import MainSection from '../components/MainSection'
 
 export default (
   <Route path="/" component={App}>
-    <Route path="good"
+    <Route path=":tab"
            component={MainSection} />
   </Route>
 )

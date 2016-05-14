@@ -7,13 +7,13 @@ export default class MainSection extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  }
-
   render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
+    const { dispatch, posts, isFetching } = this.props
+    console.log(this.props.params.tab);
+    dispatch(selectSubreddit(this.props.params.tab))
+    console.log(this.props.selectedSubreddit)
+    dispatch(fetchPostsIfNeeded(this.props.params.tab))
+
     return (
       <div className="mainSection">
         {isFetching && posts.length === 0 &&
@@ -32,10 +32,8 @@ export default class MainSection extends Component {
   }
 }
 MainSection.propTypes = {
-  selectedSubreddit: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 }
 
@@ -51,10 +49,8 @@ function mapStateToProps(state) {
   }
 
   return {
-    selectedSubreddit,
     posts,
     isFetching,
-    lastUpdated
   }
 }
 

@@ -5,13 +5,13 @@ import selectSubreddit from '../actions'
 export default class Aside extends Component {
   
   render() {
-    const lists = ['good']
+    const lists = ['good', 'share', 'ask', 'job']
     return (
       <ul className="aside">
         {lists.map((i) =>
-          <li><Link to="/good" selected='good'>{i}</Link></li>
+          <li><Link to={`/${i}`}>{i}</Link></li>
         )}
-      </ul>
+      </ul> 
     )
   }
 }
