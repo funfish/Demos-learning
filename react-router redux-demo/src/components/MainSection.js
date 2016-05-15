@@ -23,7 +23,7 @@ export default class MainSection extends Component {
           <h2>Empty.</h2>
         }
         {posts.length > 0 &&
-          <div >
+          <div className="clearfix">
             <Posts posts={posts} />
           </div>
         }

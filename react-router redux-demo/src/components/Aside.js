@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import selectSubreddit from '../actions'
+import NavItem from './NavItem'
 
 export default class Aside extends Component {
   
@@ -8,8 +8,8 @@ export default class Aside extends Component {
     const lists = ['good', 'share', 'ask', 'job']
     return (
       <ul className="aside">
-        {lists.map((i) =>
-          <li><Link to={`/${i}`}>{i}</Link></li>
+        {lists.map((item,i) =>
+          <NavItem key={i} item={item} />
         )}
       </ul> 
     )
