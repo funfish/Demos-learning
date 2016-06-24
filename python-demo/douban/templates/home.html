@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>豆瓣电影前250</title>
+</head>
+<body>
+	{% if items %}
+	<ul>
+		{% for item in items %}
+			<li>{{ item }}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<h4>加载中。。。。。</h4>
+	{% endif %}
+</body>
+<html>
